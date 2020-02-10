@@ -6,12 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-	protected $table='users_name';
+	protected $table='username';
 	public $timestamps = false;
-	public function User($user, $mail, $pw){
-		$user_insert=User_name::insert(['user'=>$user],['mail'=>$mail],['pw'=>$pw]);
+	public function AllUsers(){
+		$all_users=Username::get();
+		return $all_users;
+	}
+	public function CheckUser($user, $mail, $pw){
+		$user_check=Username::where(
+		['user', '=', $user],
+		['mail', '=', $mail],
+		['pw', '=', $pw])->get();
+		return $user_check;
+	}
+	public function NewUser($user, $mail, $pw){
+		$user_insert=Username::insertGetId(['user'=>$user,'mail'=>$mail,'pw'=>$pw]);
 		return $user_insert;
-		
 	}
 }
 ?>
