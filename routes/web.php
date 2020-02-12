@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,5 +26,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Маршруты регистрации...
 // Route::get('auth/register', 'Auth\AuthController@getRegister');
 // Route::post('auth/register', 'Auth\AuthController@postRegister');
-Route::post('/', 'SocialUser@Store')
+Route::any('/', 'SocialUser@Form');
+Route::post('form/{user}/{mail}/{pw}', 'SocialUser@UserNew');
+// Route::any('all', 'SocialUser@All' );
+// Route::any('check', 'SocialUser@CheckUser');
 ?>
